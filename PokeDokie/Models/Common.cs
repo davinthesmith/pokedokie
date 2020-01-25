@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+
 namespace PokeDokie.Models
 {
-    public class Common
+    public class ApiRef
     {
-        public Common()
-        {
-        }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
     }
 }

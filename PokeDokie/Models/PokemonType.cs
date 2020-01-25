@@ -2,7 +2,7 @@
 
 namespace PokeDokie.Models
 {
-    public class Type
+    public class PokemonType
     {
         [JsonProperty("no_damage_to")]
         public ApiRef[] NoDamageTo { get; set; }
