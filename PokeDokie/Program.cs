@@ -2,22 +2,39 @@
 using System.Threading.Tasks;
 using PokeDokie.Services;
 using PokeDokie.Utils;
+using Unity;
 
 namespace PokeDokie
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             RunAsync().Wait();
         }
 
         static async Task RunAsync()
         {
-            var api = new PokeApi();
-            var service = new PokemonService(api);
-            var report = await service.GetDamageRelationsReport("pikachu");
-            Console.WriteLine(report);
+            var container = new UnityContainer();
+            container.RegisterType<IPokeApi, PokeApi>();
+            var service = container.Resolve<PokemonService>();
+
+			Console.WriteLine("Welcome to PokeDokie!\n\n");
+
+            while (true)
+            {
+                Console.WriteLine("Which pokemon do you want to use?");
+                Console.WriteLine("(Press Enter to quit)\n");
+                var pokemonName = Console.ReadLine();
+
+                if (pokemonName == "")
+                {
+                    break;
+                }
+
+                var report = await service.GetDamageRelationsReport(pokemonName);
+                Console.WriteLine(report);
+            }
         }
     }
 }
