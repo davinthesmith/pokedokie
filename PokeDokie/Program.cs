@@ -16,10 +16,8 @@ namespace PokeDokie
         {
             var api = new PokeApi();
             var service = new PokemonService(api);
-            var value = await service.GetPokemon("pikachu");
-
-            Console.WriteLine(value.Name);
-            Console.WriteLine(value.Types[0].Type.Name);
+            var report = await service.GetDamageRelationsReport("pikachu");
+            Console.WriteLine(report);
         }
     }
 }

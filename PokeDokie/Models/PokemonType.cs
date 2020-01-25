@@ -4,6 +4,15 @@ namespace PokeDokie.Models
 {
     public class PokemonType
     {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("damage_relations")]
+        public DamageRelations DamageRelations { get; set; }
+    }
+
+    public class DamageRelations
+    {
         [JsonProperty("no_damage_to")]
         public ApiRef[] NoDamageTo { get; set; }
 
