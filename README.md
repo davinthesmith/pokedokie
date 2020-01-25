@@ -16,6 +16,26 @@ The command line will prompt you for a name of a pokemon. At the time of writing
 
 If you misspell the Pokemon name or enter an unknown string, you will receive a message in the console saying the Pokemon cannot be found.
 
+If you provide a known pokemon, the system will tell you the pokemon's type and how this type relates to the other pokemon types.
+
+### Sample output using Pikachu
+
+```
+Pikachu, I choose you!
+
+Pikachu's type is: electric
+Does not do damage to ground
+Does half damage to grass
+Does half damage to electric
+Does half damage to dragon
+Does double damage to flying
+Does double damage to water
+Takes half damage from flying
+Takes half damage from steel
+Takes half damage from electric
+Takes double damage from ground
+```
+
 ## Running Tests
 
 Navigate to the `PokeDokieTests` project and use the Test runner to run the Unit Tests
