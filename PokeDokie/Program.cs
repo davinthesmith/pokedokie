@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using PokeDokie.Services;
 using PokeDokie.Utils;
 using Unity;
+using dotenv.net;
 
 namespace PokeDokie
 {
@@ -10,6 +11,7 @@ namespace PokeDokie
     {
         static void Main()
         {
+            DotEnv.Config();
             RunAsync().Wait();
         }
 
@@ -19,7 +21,7 @@ namespace PokeDokie
             container.RegisterType<IPokeApi, PokeApi>();
             var service = container.Resolve<PokemonService>();
 
-			Console.WriteLine("Welcome to PokeDokie!\n\n");
+            Console.WriteLine("Welcome to PokeDokie!\n\n");
 
             while (true)
             {
@@ -34,6 +36,8 @@ namespace PokeDokie
 
                 var report = await service.GetDamageRelationsReport(pokemonName);
                 Console.WriteLine(report);
+                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
             }
         }
     }

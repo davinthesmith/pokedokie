@@ -19,7 +19,7 @@ namespace PokeDokie.Utils
         {
             client = new HttpClient
             {
-                BaseAddress = new Uri("https://pokeapi.co/api/v2/")
+                BaseAddress = new Uri(Environment.GetEnvironmentVariable("API_URL"))
             };
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
