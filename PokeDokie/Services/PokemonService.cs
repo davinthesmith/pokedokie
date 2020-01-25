@@ -60,7 +60,7 @@ namespace PokeDokie.Services
             }
             catch
             {
-                // Usually I wouldn't be so cavalier with my errors, but proper error handling didn't seem to be part of the criteria
+                // Usually I wouldn't be so cavalier with my errors, but proper error handling/logging didn't seem to be part of the criteria
                 return "You pokemon could not be found... Try another\n\n";
             }
         }
