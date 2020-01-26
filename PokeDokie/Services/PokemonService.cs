@@ -41,7 +41,7 @@ namespace PokeDokie.Services
                 var prettyPokemonName = pokemonName.First().ToString().ToUpper() + pokemonName.Substring(1);
 
                 // Let's get this pokemon excited
-                var report = new StringBuilder()
+                var report = new StringBuilder("\n")
                     .Append(prettyPokemonName)
                     .Append(", I choose you!\n\n");
 
@@ -49,7 +49,7 @@ namespace PokeDokie.Services
                 report.Append(prettyPokemonName)
                     .Append("'s type is: ")
                     .Append(pokemonType.Name)
-                    .Append("\n");
+                    .Append("!\n\n");
 
                 foreach (var prop in pokemonType.DamageRelations.GetType().GetProperties())
                 {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
@@ -13,29 +12,26 @@ namespace PokeDokie.Utils
 
     public class PokeApi : IPokeApi
     {
-        private static HttpClient client;
+        private static HttpClient _client;
 
-        public PokeApi()
+        public PokeApi(HttpClient client)
         {
-            client = new HttpClient
-            {
-                BaseAddress = new Uri(Environment.GetEnvironmentVariable("API_URL"))
-            };
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
+            _client = client;
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         public async Task<string> GetPokemon(string name)
         {
-            var response = await client.GetAsync($"pokemon/{name}");
+            var response = await _client.GetAsync($"pokemon/{name}");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }
 
         public async Task<string> GetType(string name)
         {
-            var response = await client.GetAsync($"type/{name}");
+            var response = await _client.GetAsync($"type/{name}");
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }

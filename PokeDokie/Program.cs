@@ -4,6 +4,7 @@ using PokeDokie.Services;
 using PokeDokie.Utils;
 using Unity;
 using dotenv.net;
+using System.Net.Http;
 
 namespace PokeDokie
 {
@@ -17,11 +18,9 @@ namespace PokeDokie
 
         static async Task RunAsync()
         {
-            var container = new UnityContainer();
-            container.RegisterType<IPokeApi, PokeApi>();
-            var service = container.Resolve<PokemonService>();
-
             Console.WriteLine("Welcome to PokeDokie!\n\n");
+
+            var service = InitService();
 
             while (true)
             {
@@ -39,6 +38,20 @@ namespace PokeDokie
                 Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
                 Console.WriteLine("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
             }
+        }
+
+        static PokemonService InitService()
+        {
+            // Register IoC Container
+            var container = new UnityContainer();
+            container.RegisterFactory<HttpClient>(x => new HttpClient
+            {
+                BaseAddress = new Uri(Environment.GetEnvironmentVariable("API_URL"))
+            });
+            container.RegisterType<IPokeApi, PokeApi>();
+
+            // Return instance of service
+            return container.Resolve<PokemonService>();
         }
     }
 }
